@@ -4,6 +4,7 @@ import re
 import pdb
 bp = breakpoint
 
+
 infile = "rcsf.out"
 outfile = "out.out"
 
