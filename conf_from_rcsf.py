@@ -9,15 +9,16 @@ outfile = "out.out"
 
 def order(a):
     dic = {"s":0, "p":1, "d":2, "f":3,"g":4}
-    return int(a[0]) * 10 + dic[a[1]]
+    a_separated = re.split("(\d+)",a)[1:]
+    returned = int(a_separated[0]) * 10 + dic[a_separated[1]]
+    return returned
 
 def order_gen(a):
     nl = []
     for i in a:
-        i = re.split("(\d\D\(.*?\))", i)
+        i = re.split("(\d+\D\(.*?\))", i)
         i = [j for j in i if j]
-        bp()
-        i = sorted(i, key=lambda x:order(x[:2]))
+        i = sorted(i, key=lambda x:order(x.split('(')[0]))
         nl.append("".join(i))
     return nl
 
