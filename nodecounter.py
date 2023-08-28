@@ -63,8 +63,8 @@ else:
         print("{}: {}".format(num+1,val))
 
     valuechoice = input("Choose a file: \n")
-    file_name = file_names[int(valuechoice)+0]
-
+    file_name = file_names[int(valuechoice)-1]
+print(file_name)
 n_cols = 3
 
 
