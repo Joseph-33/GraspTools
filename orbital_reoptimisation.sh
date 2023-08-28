@@ -162,6 +162,7 @@ while true; do
 	nam_final_str=${final:2:3}
 	fstr=${fstr}N${nam_final_str/./}
 	echo $fstr
+    echo $fstr_number
     fi
 
     sed -i "24s/.*/${builder}${others_str}/" batch_input_creator/rmcdhf_input2
