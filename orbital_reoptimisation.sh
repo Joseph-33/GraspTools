@@ -6,8 +6,8 @@ fstr_file_tail=$(tail -n1 fstr_list.out)
 echo $fstr_file_tail
 read -p "Here is the latest fstr numbers and rwfn_inputs from the file, use these values? (y/n):" fstr_file_tail_use
 
+fstr_number=$(echo $fstr_file_tail | awk '{print $1;}')
 if [[ "${fstr_file_tail_use}" == "y" ]]; then
-    fstr_number=$(echo $fstr_file_tail | awk '{print $1;}')
     fstr=$(echo $fstr_file_tail | awk '{print $2;}')
     rwfn_inp=$(echo $fstr_file_tail | awk '{print $3;}')
 else
@@ -84,6 +84,7 @@ declare -A orb_nums=( ["s"]=1 ["p"]=2 ["d"]=3 ["f"]=4 ["g"]=5 )
 nuc_charge=$(head -n2 isodata | tail -n1)
 echo "Using fstr: "$fstr
 echo "Using rwfn: "$rwfn_inp
+echo "Current fstr number: "$fstr_number
 echo "Current nuclear charge:" ${nuc_charge:0:9}
 read -p "Continue..."
 while true; do
