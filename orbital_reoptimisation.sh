@@ -1,5 +1,84 @@
-rwfn_inp="reopped_both.w"
-fstr="DF3"
+rwfn_inp="both_reopped_MR_LR.w"
+fstr="DF"
+fstr_number=0
+
+fstr_file_tail=$(tail -n1 fstr_list.out)
+echo $fstr_file_tail
+read -p "Here is the latest fstr numbers and rwfn_inputs from the file, use these values? (y/n):" fstr_file_use
+
+if [[ "${fstr_file_tail_use}" == "y" ]]; then
+    fstr_number=$(echo $fstr_file_tail | awk '{print $1;}')
+    fstr=$(echo $fstr_file_tail | awk '{print $2;}')
+    rwfn_inp=$(echo $fstr_file_tail | awk '{print $3;}')
+else
+    
+    printf "fstr options:\n1: %s \n2: %s \n3: %s \n" ${fstr} $(echo $fstr_file_tail | awk '{print $2;}') "Custom number from fstr file"
+    read -p "Which fstr would you like to choose? Option 1, 2, 3? " fstr_case
+
+    case "$fstr_case" in
+        "1")
+            ;;
+
+        "2")
+            fstr=$(echo $fstr_file_tail | awk '{print $2;}')
+            ;;
+
+        "3")
+            read -p "Which fstr_number would you like to select?: " fstr_case_custom
+            echo $fstr_case_custom
+            echo "These lines were found" 
+            fstr_search_result=$(sed -n -e "/$fstr_case_custom /p" fstr_list.out)
+            counter=0
+            while read -r line; do
+                (( counter++ ))
+                echo ${counter}: $line
+            done <<< "$fstr_search_result"
+            read -p "Select fstr value: " n_row_custom_fstr
+            nth_line=$(sed "${n_row_custom_fstr}q;d" <<< "$fstr_search_result")
+            echo $nth_line
+            fstr=$(echo $nth_line | awk '{print $2;}') 
+            printf "\nfstr: %s selected\n\n" $fstr
+            ;;
+        *)
+            echo "None selected, exiting now"
+            exit 0
+            ;;
+    esac
+
+
+    printf "rwfn_inp options:\n1: %s \n2: %s \n3: %s \n" ${rwfn_inp} $(echo $fstr_file_tail | awk '{print $3;}') "Custom number from fstr file"
+    read -p "Which rwfn_inp would you like to choose? Option 1, 2, 3? " rwfn_inp_case
+
+    case "$rwfn_inp_case" in
+        "1")
+            ;;
+
+        "2")
+            rwfn_inp=$(echo $fstr_file_tail | awk '{print $3;}')
+            ;;
+
+        "3")
+            read -p "Which rwfn_inp_number would you like to select?: " rwfn_inp_case_custom
+            echo $rwfn_inp_case_custom
+            echo "These lines were found" 
+            rwfn_inp_search_result=$(sed -n -e "/$rwfn_inp_case_custom /p" fstr_list.out)
+            counter=0
+            while read -r line; do
+                (( counter++ ))
+                echo ${counter}: $line
+            done <<< "$rwfn_inp_search_result"
+            read -p "Select rwfn_inp value: " n_row_custom_rwfn_inp
+            nth_line=$(sed "${n_row_custom_rwfn_inp}q;d" <<< "$rwfn_inp_search_result")
+            echo $nth_line
+            rwfn_inp=$(echo $nth_line | awk '{print $3;}') 
+            printf "\nrwfn_inp: %s selected\n\n" $rwfn_inp
+            ;;
+        *)
+            echo "None selected, exiting now"
+            exit 0
+            ;;
+    esac
+fi
 
 declare -A orb_names=( [1]="s" [2]="p" [3]="d" [4]="f" [5]="g" )
 declare -A orb_nums=( ["s"]=1 ["p"]=2 ["d"]=3 ["f"]=4 ["g"]=5 )
@@ -141,7 +220,9 @@ while true; do
 	cp isodata previous_inputs/reop/isodata_${fstr}
 	cp batch_input_creator/rmcdhf_input2 previous_inputs/reop/rmcdhf_${fstr}
 	cp batch_input_creator/rwfnestimate_input2 previous_inputs/reop/rwfnest_${fstr}
-	cp rwfn.out rwfn_out_${fstr}
-	rwfn_inp=rwfn_out_${fstr}
+    fstr_number=$(( ${fstr_number} + 1 ))
+	cp rwfn.out rwfn_out_${fstr_number}
+	rwfn_inp=rwfn_out_${fstr_number}
+    echo ${fstr_number} ${fstr} ${rwfn_inp} >> fstr_list.out
     fi
 done
