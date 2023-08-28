@@ -4,7 +4,7 @@ fstr_number=0
 
 fstr_file_tail=$(tail -n1 fstr_list.out)
 echo $fstr_file_tail
-read -p "Here is the latest fstr numbers and rwfn_inputs from the file, use these values? (y/n):" fstr_file_tail_use
+read -p "Here is the latest fstr numbers and rwfn_inputs from the file, use these values? (y/n): " fstr_file_tail_use
 
 fstr_number=$(echo $fstr_file_tail | awk '{print $1;}')
 fstr_number=$(( ${fstr_number} + 1 ))
