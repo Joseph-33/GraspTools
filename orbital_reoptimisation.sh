@@ -11,7 +11,7 @@ if [[ "${fstr_file_tail_use}" == "y" ]]; then
     fstr=$(echo $fstr_file_tail | awk '{print $2;}')
     rwfn_inp=$(echo $fstr_file_tail | awk '{print $3;}')
 else
-    printf "fstr options:\n1: %s \n2: %s \n3: %s \n" ${fstr} $(echo $fstr_file_tail | awk '{print $2;}') "Custom number from fstr file"
+    printf "fstr options:\n1: %s \n2: %s \n3: %s \n4: %s \n" ${fstr} $(echo $fstr_file_tail | awk '{print $2;}') "Value found from fstr_list file" "Custom (typed)"
     read -p "Which fstr would you like to choose? Option 1, 2, 3? " fstr_case
 
     case "$fstr_case" in
@@ -37,6 +37,10 @@ else
             echo $nth_line
             fstr=$(echo $nth_line | awk '{print $2;}') 
             printf "\nfstr: %s selected\n\n" $fstr
+            ;;
+        "4")
+            read -p "Type the new fstr value: " fstr_case_typed
+            fstr=$fstr_case_typed
             ;;
         *)
             echo "None selected, exiting now"
@@ -71,6 +75,10 @@ else
             echo $nth_line
             rwfn_inp=$(echo $nth_line | awk '{print $3;}') 
             printf "\nrwfn_inp: %s selected\n\n" $rwfn_inp
+            ;;
+        "4")
+            read -p "Type the new rwfn_inp value: " rwfn_inp_case_typed
+            rwfn_inp=$rwfn_inp_case_typed
             ;;
         *)
             echo "None selected, exiting now"
