@@ -8,8 +8,19 @@ import os
 import pandas as pd
 bp = breakpoint
 
-#file_name = "xmgrace_odd_SD_sm1.agr"
-file_name = [i for i in os.listdir() if "xmgrace" in i][0]
+plotmode = input("Enable Plot mode? (y/n)")
+
+file_names = [i for i in os.listdir() if ".agr" in i]
+file_names = [i for i in file_names if i[0] != "."]
+if len(file_names) == 1:
+    file_name = file_names[0]
+else:
+    for num,val in enumerate(file_names):
+        print("{}: {}".format(num+1,val))
+
+    valuechoice = input("Choose a file: \n")
+    file_name = file_names[int(valuechoice)+0]
+
 n_cols = 3
 
 def to_numeric_func(x):
@@ -48,6 +59,14 @@ for i in range(len(datasets)):
     df = newdf.to_numpy().T
     datasets[i] = df
 
+def get_end(gr,k):
+    x = k[1]
+    graddf = pd.DataFrame(np.array(np.array([x,gr]).T))
+    graddf_redone = graddf[(np.abs(graddf[0]) > 1e-4) & (np.abs(graddf[1]) > 1e-4)]
+    
+    index = graddf_redone[0].index[-1]
+    x_val = k[0][index]
+    return x_val
 
 for i in range(len(datasets)):
     k = datasets[i]
@@ -73,3 +92,11 @@ for i in range(len(datasets)):
     correct_node = node_corr(orbitals[i])
     diff_from_correct = abs(correct_node - len(new_z_vals))
     print("{:3s}: {} nodes {} away from the correct node of {}".format(orbitals[i], len(new_z_vals), diff_from_correct, correct_node))
+
+
+    if plotmode == "y":
+        end_value = get_end(gr,k)
+        plt.plot(k[0],k[1], label="{}: {} nodes {} away".format(orbitals[i], len(new_z_vals), diff_from_correct))
+        plt.xlim(0,end_value)
+        plt.legend()
+        plt.show()
