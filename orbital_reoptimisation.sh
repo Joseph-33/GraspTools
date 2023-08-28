@@ -7,6 +7,7 @@ echo $fstr_file_tail
 read -p "Here is the latest fstr numbers and rwfn_inputs from the file, use these values? (y/n):" fstr_file_tail_use
 
 fstr_number=$(echo $fstr_file_tail | awk '{print $1;}')
+fstr_number=$(( ${fstr_number} + 1 ))
 if [[ "${fstr_file_tail_use}" == "y" ]]; then
     fstr=$(echo $fstr_file_tail | awk '{print $2;}')
     rwfn_inp=$(echo $fstr_file_tail | awk '{print $3;}')
