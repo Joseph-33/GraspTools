@@ -24,7 +24,7 @@ else
             ;;
 
         "3")
-            read -p "Which fstr_number would you like to select?: " fstr_case_custom
+            read -p "Which fstr would you like to select?: " fstr_case_custom
             echo $fstr_case_custom
             echo "These lines were found" 
             fstr_search_result=$(sed -n -e "/$fstr_case_custom /p" fstr_list.out)
@@ -230,9 +230,9 @@ while true; do
 	cp isodata previous_inputs/reop/isodata_${fstr}
 	cp batch_input_creator/rmcdhf_input2 previous_inputs/reop/rmcdhf_${fstr}
 	cp batch_input_creator/rwfnestimate_input2 previous_inputs/reop/rwfnest_${fstr}
-    fstr_number=$(( ${fstr_number} + 1 ))
 	cp rwfn.out rwfn_out_${fstr_number}
 	rwfn_inp=rwfn_out_${fstr_number}
     echo ${fstr_number} ${fstr} ${rwfn_inp} >> fstr_list.out
+    fstr_number=$(( ${fstr_number} + 1 ))
     fi
 done
