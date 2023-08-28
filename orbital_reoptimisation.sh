@@ -4,14 +4,13 @@ fstr_number=0
 
 fstr_file_tail=$(tail -n1 fstr_list.out)
 echo $fstr_file_tail
-read -p "Here is the latest fstr numbers and rwfn_inputs from the file, use these values? (y/n):" fstr_file_use
+read -p "Here is the latest fstr numbers and rwfn_inputs from the file, use these values? (y/n):" fstr_file_tail_use
 
 if [[ "${fstr_file_tail_use}" == "y" ]]; then
     fstr_number=$(echo $fstr_file_tail | awk '{print $1;}')
     fstr=$(echo $fstr_file_tail | awk '{print $2;}')
     rwfn_inp=$(echo $fstr_file_tail | awk '{print $3;}')
 else
-    
     printf "fstr options:\n1: %s \n2: %s \n3: %s \n" ${fstr} $(echo $fstr_file_tail | awk '{print $2;}') "Custom number from fstr file"
     read -p "Which fstr would you like to choose? Option 1, 2, 3? " fstr_case
 
