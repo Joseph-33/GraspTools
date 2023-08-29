@@ -137,7 +137,7 @@ for i in range(len(datasets)):
 
     correct_node = node_corr(orbitals[i])
     diff_from_correct = abs(correct_node - len(new_z_vals))
-    print("{:3s}: {} nodes {} away from the correct node of {}".format(orbitals[i], len(new_z_vals), diff_from_correct, correct_node))
+    print("{:4s}: {} nodes {} away from the correct node of {}".format(orbitals[i], len(new_z_vals), diff_from_correct, correct_node))
 
 
     if plotmode == "y":
