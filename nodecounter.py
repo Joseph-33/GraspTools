@@ -4,9 +4,9 @@ from scipy.signal import savgol_filter
 import matplotlib.pyplot as plt
 from numpy import trapz
 import pdb
-import os
+from os import listdir
 import pandas as pd
-import fnmatch
+from fnmatch import filter as fnfilter
 bp = breakpoint
 
 def expand_filter_pattern(pattern):
@@ -38,9 +38,9 @@ def filter_atomic_orbitals(custom_orbitals, filter_list):
                 end_pattern = 10  # Assuming a default maximum pattern of 9
 
             for i in range(start_pattern, end_pattern):
-                filtered_orbitals.extend(fnmatch.filter(custom_orbitals, str(i) + non_numeric_part))
+                filtered_orbitals.extend(fnfilter(custom_orbitals, str(i) + non_numeric_part))
         else:
-            filtered_orbitals.extend(fnmatch.filter(custom_orbitals, pattern))
+            filtered_orbitals.extend(fnfilter(custom_orbitals, pattern))
 
     return filtered_orbitals
 
@@ -54,7 +54,7 @@ if plotmode == "y":
         filter_list = filter_list.split()
         filter_list = [i for i in filter_list if i]
 
-file_names = [i for i in os.listdir() if ".agr" in i]
+file_names = [i for i in listdir() if ".agr" in i]
 file_names = [i for i in file_names if i[0] != "."]
 if len(file_names) == 1:
     file_name = file_names[0]
