@@ -51,7 +51,6 @@ if ans.lower() == "y":
     else:
         outfile = ""
 elif ans.lower() == "":
-    outfile = ""
     numb = ""
 
 with open(infile,'r') as fil:
