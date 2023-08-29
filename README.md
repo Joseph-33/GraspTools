@@ -9,10 +9,6 @@ Creates a clist.ref file from the rcsfmr.inp multireference file provided
 
 A bash script that automates much of the DF layer optimisation for you, with many functions such as nuclear decrease mode and creating screened hydrogenic functions to reestimate orbitals.
 
-## disks generator
-
-Creates a disks file for mpi calculations, argument is number of cores
-
 ## nodecounter.py
 
 Counts the number of nodes and difference from correct node from a GRASP octave file
