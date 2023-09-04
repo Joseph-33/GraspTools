@@ -12,7 +12,7 @@ Each configuration list is sorted to ensure the same configurations will appear 
 
 ## DF orbital optimisation assistant (orbital_reoptimisation.sh)
 
-A bash script that automates much of the DF layer optimisation for you, with many functions such as nuclear decrease mode and creating screened hydrogenic functions to reestimate orbitals.
+A bash script that automates much of the DF layer optimisation for you, with many functions such as nuclear charge decrease mode and creating screened hydrogenic functions to reestimate orbitals.
 
 ## Clist generator (clistgen.py)
 
