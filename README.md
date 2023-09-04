@@ -1,14 +1,6 @@
 # GraspTools
 A collection of tools that can provide assistance for the program GRASP.
 
-## Clist generator (clistgen.py)
-
-Creates a clist.ref file from the rcsfmr.inp multireference file provided
-
-## DF orbital optimisation assistant (orbital_reoptimisation.sh)
-
-A bash script that automates much of the DF layer optimisation for you, with many functions such as nuclear decrease mode and creating screened hydrogenic functions to reestimate orbitals.
-
 ## Node counter and python plotter (nodecounter.py)
 
 May count the total number of nodes of any octave output file in the current directory. Also supports plotting and manually specifying orbitals to plot and count using wildcards.
@@ -17,6 +9,14 @@ May count the total number of nodes of any octave output file in the current dir
 
 Prints and outputs a list of configuration files from an rcsf.out file.
 Each configuration list is sorted to ensure the same configurations will appear for different CSF files.
+
+## DF orbital optimisation assistant (orbital_reoptimisation.sh)
+
+A bash script that automates much of the DF layer optimisation for you, with many functions such as nuclear decrease mode and creating screened hydrogenic functions to reestimate orbitals.
+
+## Clist generator (clistgen.py)
+
+Creates a clist.ref file from the rcsfmr.inp multireference file provided
 
 ## Configuration CSF counter (conf_collector.sh)
 
