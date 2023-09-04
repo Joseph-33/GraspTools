@@ -1,0 +1,22 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: GraspTools
+message: >-
+  Set of tools developed for use in assistance with the
+  program GRASP2018
+type: software
+authors:
+  - given-names: J.S
+    family-names: Andrews
+    email: joseph.andrews@uni-jena.de
+    affiliation: University of Jena
+repository-code: 'https://github.com/Joseph-33/GraspTools'
+abstract: >-
+
+
+  A collection of tools that can provide assistance for the
+  program GRASP.
+keywords:
+  - GRASP2018
