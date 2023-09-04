@@ -16,7 +16,7 @@ A bash script that automates much of the DF GRASP orbital optimisation for you, 
 
 ## Clist generator (clistgen.py)
 
-Creates a clist.ref file from the rcsfmr.inp multireference file provided
+Creates a clist.ref file using the ordering of the rcsfmr.inp multireference file provided
 
 ## Configuration CSF counter (conf_collector.sh)
 
