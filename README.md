@@ -8,7 +8,7 @@ May count the total number of nodes of any octave output file in the current dir
 ## Electronic configurations from rcsf.out (conf_from_rcsf.py)
 
 Prints and outputs a list of configuration files from an rcsf.out file.
-Each configuration list is sorted to ensure the same configurations will appear for different CSF files.
+Each configuration list is sorted to ensure the same order of configurations will appear for slightly different CSF files for easy comparison.
 
 ## DF orbital optimisation assistant (orbital_reoptimisation.sh)
 
