@@ -20,5 +20,5 @@ Creates a clist.ref file from the rcsfmr.inp multireference file provided
 
 ## Configuration CSF counter (conf_collector.sh)
 
-Uses the rcsfpreview program developed in https://github.com/Joseph-33/Grasp that will estimate the number of CSFs by generating CSFs but not saving them to file. Useful for rough estimates of extremely large expansions.
+Uses the rcsfpreview program developed in https://github.com/Joseph-33/Grasp that will estimate the number of CSFs by generating CSFs but not combining or saving them to file. Useful for rough estimates of extremely large expansions.
 
