@@ -50,7 +50,7 @@ if ans.lower() == "y":
         outfile = input("What should the output name be?\n")
     else:
         outfile = ""
-elif ans.lower() == "":
+else:
     numb = ""
 
 with open(infile,'r') as fil:
