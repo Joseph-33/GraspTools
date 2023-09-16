@@ -1,6 +1,5 @@
 import re
 import numpy as np
-from scipy.signal import savgol_filter
 from collections import defaultdict
 import matplotlib.pyplot as plt
 from numpy import trapz
@@ -27,6 +26,10 @@ def filter_atomic_orbitals(custom_orbitals, filter_list):
     if not filter_list:
         return custom_orbitals
     expanded_filter_list = []
+    if type(filter_list) == str: # Change type to list if input is a string
+        filter_list = filter_list.split(" ")
+        filter_list = [i for i in filter_list if i]
+
     for pattern in filter_list:
         expanded_filter_list.extend(expand_filter_pattern(pattern))
 
@@ -162,8 +165,6 @@ def remove_unused_datasets(datasets, orbitals, allowed_orbitals):
     return new_datasets, new_orbitals
 
 def flip_combined_plots(datasets, orbitals):
-    from scipy.interpolate import interp1d
-    from skimage.metrics import mean_squared_error
 
     """
     If two plots have the same orbitals, but one is flipped, this function will flip the graph
@@ -184,7 +185,7 @@ def flip_combined_plots(datasets, orbitals):
 
         maxy1 = max(y1, key=abs)
         maxy2 = max(y2, key=abs)
-        if maxy1 * maxy2 < 0:
+        if maxy1 * maxy2 < 0: # Check if the maximum of graph 1 is of different sign than of graph 2
             datasets[D[i][0]][1]  = - datasets[D[i][0]][1]
 
     return datasets
@@ -250,8 +251,6 @@ def plotmode(datasets, orbitals, plottogether, indexer = False, restrict_orbital
         plt.xlim(0,max(end_list)) # Use the largest end value
         plt.show()
 
-#file_name, filter_list = get_filename()
-##print(file_name)
 n_cols = 3
 
 class Wave:
@@ -280,13 +279,13 @@ class Wave:
         """
         node_print(self.datasets, self.orbitals)
 
-    def plot(self, plottogether=True, restrict_orb = []):
+    def plot(self, plottogether=True, select = ""):
         """
         Plots the selected orbitals of the wavefunction
         plottogether - Boolean operator, either plots the orbitals together or seperately
         restrict_orb - Uses regex to restrict number of orbitals plotted
         """
-        restrict_orbitals = filter_atomic_orbitals(self.orbitals, restrict_orb) # Collects the nessicary datasets
+        restrict_orbitals = filter_atomic_orbitals(self.orbitals, select) # Collects the nessicary datasets
         plotmode(self.datasets, self.orbitals, plottogether, indexer = self.indexer, restrict_orbitals = restrict_orbitals)
 
     def __add__(self, wave2):
@@ -301,24 +300,9 @@ class Wave:
         result.indexer = [self.filename] * len(self.orbitals) + [wave2.filename] * len(wave2.orbitals)
         return result
 
-lays = Wave()
-lays.from_file()
-dbsr = Wave()
-dbsr.from_file()
-both = lays + dbsr
+#lays = Wave()
+#lays.from_file()
+#dbsr = Wave()
+#dbsr.from_file()
+#both = lays + dbsr
 
-#for i in dbsr.orbitals:
-#    both.plot(restrict_orb =["{}".format(i)])
-
-#datasets = file_to_dataset(file_name) # Uses the file_name to obtain the dataset
-#datasets, orbitals = datasets_to_numpy(datasets) # Call datasets_to_numpy
-
-#allowed_orbitals = filter_atomic_orbitals(orbitals,filter_list) # Collects the nessicary datasets
-#
-#if input("Enable node printing? (y/n)\n").lower() == "y":
-#    node_print(datasets, allowed_orbitals, orbitals)
-#
-#if input("Enable Plot mode? (y/n)\n").lower() == "y":
-#    plotmode(datasets, orbitals)
-#
-#
