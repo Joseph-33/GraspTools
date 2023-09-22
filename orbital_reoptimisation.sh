@@ -165,7 +165,7 @@ while true; do
     echo $fstr_number
     fi
 
-    sed -i "24s/.*/${builder}${others_str}/" batch_input_creator/rmcdhf_input2
+    sed -i "19s/.*/${builder}${others_str}/" batch_input_creator/rmcdhf_input2
     sed -i "14s/.*/"n"/" batch_input_creator/rwfnestimate_input2
     rwfnestimate < batch_input_creator/rwfnestimate_input2 |& tee logs/reop/rwfnestimate_${fstr}
     read -p "Change optimised estimates? (y): " est_ans
@@ -227,9 +227,9 @@ while true; do
 	fstr=$old_fstr
     else
 	echo $fstr
-	cp isodata previous_inputs/reop/isodata_${fstr}
-	cp batch_input_creator/rmcdhf_input2 previous_inputs/reop/rmcdhf_${fstr}
-	cp batch_input_creator/rwfnestimate_input2 previous_inputs/reop/rwfnest_${fstr}
+	cp isodata previous_inputs/reop/isodata_${fstr_number}
+	cp batch_input_creator/rmcdhf_input2 previous_inputs/reop/rmcdhf_${fstr_number}
+	cp batch_input_creator/rwfnestimate_input2 previous_inputs/reop/rwfnest_${fstr_number}
 	cp rwfn.out rwfn_out_${fstr_number}
 	rwfn_inp=rwfn_out_${fstr_number}
     echo ${fstr_number} ${fstr} ${rwfn_inp} >> fstr_list.out
