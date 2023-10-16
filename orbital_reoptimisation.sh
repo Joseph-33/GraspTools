@@ -1,4 +1,4 @@
-rwfn_inp="both_reopped_MR_LR.w"
+rwfn_inp="even_sm0_155.w"
 fstr="DF"
 fstr_number=0
 
@@ -142,6 +142,18 @@ while true; do
 
     echo $builder$others_str
 
+    echo "Are the orbitals spectroscopic orbitals? (y/n)  (Default is yes, spectroscopic): "
+    read -p "> " spectro_orbital
+
+
+    if [[ "$spectro_orbital" == "n" ]]; then
+        sed -i "18s/.*/ /" batch_input_creator/rmcdhf_input2
+    else
+        sed -i "18s/.*/*/" batch_input_creator/rmcdhf_input2
+    fi
+
+
+
     echo "Current nuclear charge:" $(head -n2 isodata | tail -n1)
     read -p "Nuc decrease mode?: " nuc_decrease_mode
 
@@ -150,24 +162,23 @@ while true; do
 	myvar=$(sed '2!d' isodata)
 	final=$(echo "$myvar - $negator" | bc -l)
 	sed -i "2s/.*/   ${final}/" isodata
-	final_str=${final:1:3}
     fi
 
     nam_myvar=$(sed '2!d' isodata)
-    nog=103
+    nog=71
     nam_final=$(echo "$nam_myvar - $nog" | bc -l)
     result=$(echo "scale=7; $nam_final == 0" | bc)
     if [ "$(echo "$nam_final != 0" | bc -l)" -eq 1 ]; then
 	final=$(echo "$nam_myvar - 0.0" | bc -l)
-	nam_final_str=${final:2:3}
+	nam_final_str=${final:1:3}
 	fstr=${fstr}N${nam_final_str/./}
 	echo $fstr
     echo $fstr_number
     fi
 
-    sed -i "19s/.*/${builder}${others_str}/" batch_input_creator/rmcdhf_input2
+    sed -i "17s/.*/${builder}${others_str}/" batch_input_creator/rmcdhf_input2
     sed -i "14s/.*/"n"/" batch_input_creator/rwfnestimate_input2
-    rwfnestimate < batch_input_creator/rwfnestimate_input2 |& tee logs/reop/rwfnestimate_${fstr}
+    rwfnestimate < batch_input_creator/rwfnestimate_input2 |& tee logs/reop/rwfnestimate_${fstr_number}
     read -p "Change optimised estimates? (y): " est_ans
 
     if [[ "$est_ans" == "y" ]]; then
@@ -203,7 +214,7 @@ while true; do
 	    sed -i "14s/.*/y/" batch_input_creator/rwfnestimate_input2
 	    sed -i "15s/.*/${builder}${others_str}/" batch_input_creator/rwfnestimate_input2
 	    #sed -i "15s/.*/7p-/" batch_input_creator/rwfnestimate_input2
-	    rwfnestimate < batch_input_creator/rwfnestimate_input2 |& tee logs/reop/rwfnestimate_${fstr}
+	    rwfnestimate < batch_input_creator/rwfnestimate_input2 |& tee logs/reop/rwfnestimate_${fstr_number}
 	    read -p "Change values again? (y): " KeepValue
 
 	done
@@ -211,18 +222,20 @@ while true; do
 
 
     #mpirun -np ${CORES} rmcdhf_mpi < batch_input_creator/rmcdhf_input2 |& tee logs/rmcdhf_${layer}_${fstr}
-    rmcdhf < batch_input_creator/rmcdhf_input2 |& tee logs/reop/rmcdhf_${fstr}
+    rmcdhf < batch_input_creator/rmcdhf_input2 |& tee logs/reop/rmcdhf_${fstr_number}
+
+    python level_finder.py logs/reop/rmcdhf_${fstr_number}
 
     echo "Done"
-    tac logs/reop/rmcdhf_${fstr} | awk '!flag; /Self/{flag = 1};' | tac | head -n 50
-    grep "Iteration number " logs/reop/rmcdhf_${fstr} | tail -1
+    tac logs/reop/rmcdhf_${fstr_number} | awk '!flag; /Self/{flag = 1};' | tac | head -n 10
+    grep "Iteration number " logs/reop/rmcdhf_${fstr_number} | tail -1
 
     echo $fstr
     read -p "Did the calculation succeed? : " success
     if [[ "$success" != "y" ]]
     then
-	rm logs/reop/rmcdhf_${fstr}
-	rm logs/reop/rwfnestimate_${fstr}
+	rm logs/reop/rmcdhf_${fstr_number}
+	rm logs/reop/rwfnestimate_${fstr_number}
 	sed -i "2s/.*/${init_nuc}/" isodata
 	fstr=$old_fstr
     else
