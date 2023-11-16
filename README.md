@@ -1,7 +1,7 @@
 # GraspTools
 A collection of tools that can provide assistance for the program GRASP.
 
-## Node counter and python plotter (nodecounter.py)
+## Node counter and python plotter (nodecounter.py/ waveanalysis.py)
 
 May count the total number of nodes of any octave output file in the current directory. Also supports plotting and manually specifying orbitals to plot and count using wildcards.
 
