@@ -9,7 +9,7 @@ nextlay = "rcsf.inp"
 rmix_fil = "rcsfmix.out"
 output = "rcsflastlay.out"
 
-ansch = input("Choose an option: \n(1) orblays\n(2) remove full 4f\n")
+ansch = int(input("Choose an option: \n(1) orblays\n(2) remove full 4f\n"))
 if ansch == 1:
     orblays = ["13s","13p","13d","13f"]
     print("Using:"," ".join(orblays))
