@@ -11,7 +11,7 @@ Prints and outputs a list of configuration files from an rcsf.out file.
 Each configuration list is sorted to ensure the same order of configurations will appear for slightly different CSF files for easy comparison.
 
 ## Rmix layers
-Will remove all csfs from the file rcsf.inp that are not inside the list orblayers. (Optional combine the list rcsfrmix.out with rcsf.inp) output is rcsflastlay.out. Remember to run rcsfblock afterwards.
+Will remove all csfs from the file rcsf.inp where a subshell in the list orblayers is not present. (Optional combine the list rcsfrmix.out with rcsf.inp) output is rcsflastlay.out. Remember to run rcsfblock afterwards.
 
 ## DF orbital optimisation assistant (orbital_reoptimisation.sh)
 
