@@ -9,8 +9,16 @@ nextlay = "rcsf.inp"
 rmix_fil = "rcsfmix.out"
 output = "rcsflastlay.out"
 
-orblays = ["13s","13p","13d","13f"]
-print("Using:"," ".join(orblays))
+ansch = input("Choose an option: \n(1) orblays\n(2) remove full 4f\n")
+if ansch == 1:
+    orblays = ["13s","13p","13d","13f"]
+    print("Using:"," ".join(orblays))
+elif ansch == 2:
+    str4f = "  5f-( 6)  5f ( 8)"
+    print("Using:",str4f)
+else:
+    print("Choose either 1 or 2")
+    exit()
 
 ans = input("Add the files from {}? (y/n): ".format(rmix_fil))
 if ans.lower() == "y":
@@ -45,9 +53,12 @@ csf_raw1 = lines[5:]
 csf1, sti1 = star_remover(csf_raw1, starindex=True)
 group1 = [csf1[i:i+3] for i in range(0, len(csf1), 3)]
 
-group1_mod = []
-for csf in group1:
-    if any(orb in csf[0] for orb in orblays):
+group1_mod = [] # First loop is orblays
+#for csf in group1:
+#    if any(orb in csf[0] for orb in orblays):
+#        group1_mod.append(csf)
+for csf in group1: # Here is the things for 4f full
+    if str4f not in csf[0]:
         group1_mod.append(csf)
 
 group1_modbigstr = ["".join(i) for i in group1_mod]
