@@ -34,7 +34,7 @@ else:
 pattern_csf = r"^(\s\s6s\s\()"
 pattern_ang = r"^(\s\s\s)"
 replace_ang = " " * len(replace_csf)
-patterns = [pattern_csf, replace_csf, pattern_ang, pattern_ang]
+patterns = [pattern_csf, replace_csf, pattern_ang, replace_ang]
 
 def file_selector():
     file_names = [i for i in listdir()]
@@ -64,7 +64,7 @@ def option1(lines, patterns):
     return result
 
 def option2(lines, patterns):
-    replace_csf, replace_ang = patterns
+    pattern_csf, replace_csf, pattern_ang, replace_ang = patterns
     result=[]
     for i in range(len(lines)):
         if i < 5:
@@ -72,7 +72,7 @@ def option2(lines, patterns):
 
         if "(" in lines[i]: # For the CSF part
             subs = replace_csf + lines[i]
-        elif "*" not in line[i]: # For the angular part
+        elif "*" not in lines[i]: # For the angular part
             subs = replace_ang + lines[i]
         else:
             subs = lines[i]
@@ -85,6 +85,10 @@ def option2(lines, patterns):
 with open(file_name,'r') as fil:
     lines = fil.readlines()
 
+if opt == 1:
+    result = option1(lines, patterns)
+elif opt == 2:
+    result = option2(lines, patterns)
 out_str = "".join(result)
 csf_str = "".join(lines[:5])
 
