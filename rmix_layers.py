@@ -10,6 +10,28 @@ nextlay = "rcsf.inp"
 rmix_fil = "rcsfmix.out"
 output = "rcsflastlay.out"
 
+str4f = "  5f-( 6)  5f ( 8)"
+orblays = ["11s","11p","10d","8f","8g","7g"]
+# Questions
+ansch = int(input("Choose an option: \n(1) orblays\n(2) remove full 4f\n(3) Some combination of both\n(4) Number (3) but 1/2- comes from rcsfint"))
+if ansch == 1:
+    print("Using:"," ".join(orblays))
+elif ansch == 2:
+    print("Using:",str4f)
+elif ansch == 3:
+    print("Using: {} and {}".format(str4f, orblays))
+elif ansch == 4:
+    print("Using: {} and {} 1/2- version".format(str4f, orblays))
+else:
+    print("Choose either 1, 2, 3 or 4")
+    exit()
+
+ans = input("Add the files from {}? (y/n): ".format(rmix_fil))
+if ans.lower() == "y":
+    rmix_q = True
+else:
+    rmix_q = False
+
 # Functions
 def star_remover(csf,starindex=False):
     nl = []
@@ -36,39 +58,6 @@ def file_process(lines):
     group = [csf[i:i+3] for i in range(0, len(csf), 3)]
 
     return group
-
-# Questions
-ansch = int(input("Choose an option: \n(1) orblays\n(2) remove full 4f\n(3) Some combination of both"))
-if ansch == 1:
-    orblays = ["13s","13p","13d","13f"]
-    print("Using:"," ".join(orblays))
-elif ansch == 2:
-    str4f = "  5f-( 6)  5f ( 8)"
-    print("Using:",str4f)
-elif ansch == 3:
-    orblays = ["11s","11p","10d","8f","8g","7g"]
-    str4f = "  5f-( 6)  5f ( 8)"
-    print("Using:",str4f)
-else:
-    print("Choose either 1, 2 or 3")
-    exit()
-
-ans = input("Add the files from {}? (y/n): ".format(rmix_fil))
-if ans.lower() == "y":
-    rmix_q = True
-else:
-    rmix_q = False
-
-# Open
-with open(nextlay,'r') as fil:
-    lines = fil.readlines()
-
-with open(rmix_fil,'r') as fil:
-    linesmix = fil.readlines()
-
-# Process the files
-group1 = file_process(lines)
-group2 = file_process(linesmix)
 
 def modstr(group_mod):
     """ Formats the csfs from lists into strings ready to save to file"""
@@ -106,9 +95,19 @@ def option4(group1, group2):
 
     return group1_mod, group2_mod
 
+# Open the files and read them
+with open(nextlay,'r') as fil:
+    lines = fil.readlines()
 
-        
+with open(rmix_fil,'r') as fil:
+    linesmix = fil.readlines()
 
+# Process the files
+group1 = file_process(lines)
+group2 = file_process(linesmix)
+
+
+# Call the option functions
 if ansch == 1:
     group1_mod, group2_mod = option1(group1, group2)
 elif ansch == 2:
@@ -121,13 +120,15 @@ elif ansch == 4:
 group1_modstr = modstr(group1_mod)
 group2_modstr = modstr(group2_mod)
 
+# Write
 print("Previous: ",len(group1))
 with open(output,'w') as fil2:
     fil2.write("".join(lines[:5]))
     if rmix_q:
         fil2.write(group2_modstr)
-        print("After + rmix:",len(group1_mod)," + ",len(group2))
+        print("After + rmix:",len(group1_mod)," + ",len(group2_modstr))
     else:
         fil2.write(group1_modstr)
-print(len(group1_mod)+len(group2))
+        print("After: ",len(group1_mod))
+print(len(group1_mod)+len(group2_modstr))
 
