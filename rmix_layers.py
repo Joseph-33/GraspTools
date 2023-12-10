@@ -120,16 +120,19 @@ elif ansch == 4:
 group1_modstr = modstr(group1_mod)
 group2_modstr = modstr(group2_mod)
 
-# Write
-print("Previous: ",len(group1))
+# Writing
 with open(output,'w') as fil2:
     fil2.write("".join(lines[:5])) # Write the rcsf header
     fil2.write(group1_modstr)
     if rmix_q:
         fil2.write(group2_modstr)
+    else:
+        fil2.write(group1_modstr)
+
+# Printing
+print("Previous: ",len(group1))
+    if rmix_q:
         print("After + rmix:",len(group1_mod)," + ",len(group2_mod))
         print(len(group1_mod)+len(group2_mod))
     else:
-        fil2.write(group1_modstr)
         print("After: ",len(group1_mod))
-
