@@ -13,7 +13,7 @@ output = "rcsflastlay.out"
 str4f = "  5f-( 6)  5f ( 8)"
 orblays = ["11s","11p","10d","8f","8g","7g"]
 # Questions
-ansch = int(input("Choose an option: \n(1) orblays\n(2) remove full 4f\n(3) Some combination of both\n(4) Number (3) but 1/2- comes from rcsfint"))
+ansch = int(input("Choose an option: \n(1) orblays\n(2) remove full 4f\n(3) Some combination of both\n(4) Number (3) but 1/2- comes from rcsfint\n"))
 if ansch == 1:
     print("Using:"," ".join(orblays))
 elif ansch == 2:
@@ -65,23 +65,23 @@ def modstr(group_mod):
     group_modstr = "".join(group_modbigstr)
     return group_modstr
 
-def option1(group1, group2_mod):
+def option1(group1, group2):
     """ Removes csf from rcsfint if they do not contain an orbital in orblays """
     group1_mod = [csf for csf in group1 if any(orb in csf[0] for orb in orblays)]
-    return group1_mod, group2_mod
+    return group1_mod, group2
 
-def option2(group1, group2_mod):
+def option2(group1, group2):
     """ Remove csf if it contains full 5f core """
     group1_mod = [i for i in group1 if str4f not in i[0]]
-    return group1_mod, group2_mod
+    return group1_mod, group2
 
-def option3(group1, group2_mod):
+def option3(group1, group2):
     """ Remove csf if it contains full 5f core or does not contain orbital in orblays """
     group1_mod = [] # First loop is orblays
     for csf in group1: # Here is the things for 4f full
         if str4f not in csf[0] and any(orb in csf[0] for orb in orblays):
             group1_mod.append(csf)
-    return group1_mod, group2_mod
+    return group1_mod, group2
 def option4(group1, group2):
     """ Removes csf if contains full 5f core or does not contain orbital in orblays, but keeps all 1/2- csfs
     Also remove all 1/2- csfs from the rmix file to avoid duplicates"""
@@ -102,7 +102,7 @@ with open(nextlay,'r') as fil:
 with open(rmix_fil,'r') as fil:
     linesmix = fil.readlines()
 
-# Process the files
+# Process the files and remove the 
 group1 = file_process(lines)
 group2 = file_process(linesmix)
 
@@ -123,12 +123,13 @@ group2_modstr = modstr(group2_mod)
 # Write
 print("Previous: ",len(group1))
 with open(output,'w') as fil2:
-    fil2.write("".join(lines[:5]))
+    fil2.write("".join(lines[:5])) # Write the rcsf header
+    fil2.write(group1_modstr)
     if rmix_q:
         fil2.write(group2_modstr)
-        print("After + rmix:",len(group1_mod)," + ",len(group2_modstr))
+        print("After + rmix:",len(group1_mod)," + ",len(group2_mod))
+        print(len(group1_mod)+len(group2_mod))
     else:
         fil2.write(group1_modstr)
         print("After: ",len(group1_mod))
-print(len(group1_mod)+len(group2_modstr))
 
