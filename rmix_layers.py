@@ -12,8 +12,9 @@ output = "rcsflastlay.out"
 
 str4f = "  5f-( 6)  5f ( 8)"
 orblays = ["11s","11p","10d","8f","8g","7g"]
+parity = "+"
 # Questions
-ansch = int(input("Choose an option: \n(1) orblays\n(2) remove full 4f\n(3) Some combination of both\n(4) Number (3) but 1/2- comes from rcsfint\n"))
+ansch = int(input("Choose an option: \n(1) orblays\n(2) remove full 4f\n(3) Some combination of both\n(4) Number (3) but 1/2{} comes from rcsfint\n".format(parity)))
 if ansch == 1:
     print("Using:"," ".join(orblays))
 elif ansch == 2:
@@ -21,11 +22,12 @@ elif ansch == 2:
 elif ansch == 3:
     print("Using: {} and {}".format(str4f, orblays))
 elif ansch == 4:
-    print("Using: {} and {} 1/2- version".format(str4f, orblays))
+    print("Using: {} and {} 1/2{} version".format(str4f, orblays, parity))
 else:
     print("Choose either 1, 2, 3 or 4")
     exit()
 
+print("Parity: {}".format(parity))
 ans = input("Add the files from {}? (y/n): ".format(rmix_fil))
 if ans.lower() == "y":
     rmix_q = True
@@ -83,15 +85,15 @@ def option3(group1, group2):
             group1_mod.append(csf)
     return group1_mod, group2
 def option4(group1, group2):
-    """ Removes csf if contains full 5f core or does not contain orbital in orblays, but keeps all 1/2- csfs
-    Also remove all 1/2- csfs from the rmix file to avoid duplicates"""
+    """ Removes csf if contains full 5f core or does not contain orbital in orblays, but keeps all 1/2 csfs
+    Also remove all 1/- csfs from the rmix file to avoid duplicates"""
     group1_mod = [] # First loop is orblays
     for csf in group1: # Here is the things for 4f full
-        trth1 = "1/2-" in csf[-1]
+        trth1 = "1/2{}".format(parity) in csf[-1]
         trth2 = str4f not in csf[0] and any(orb in csf[0] for orb in orblays)
         if trth1 or trth2:
             group1_mod.append(csf)
-    group2_mod = [csf2 for csf2 in group2 if "1/2-" not in csf2[-1]]
+    group2_mod = [csf2 for csf2 in group2 if "1/2{}".format(parity) not in csf2[-1]]
 
     return group1_mod, group2_mod
 
@@ -131,8 +133,8 @@ with open(output,'w') as fil2:
 
 # Printing
 print("Previous: ",len(group1))
-    if rmix_q:
-        print("After + rmix:",len(group1_mod)," + ",len(group2_mod))
-        print(len(group1_mod)+len(group2_mod))
-    else:
-        print("After: ",len(group1_mod))
+if rmix_q:
+    print("After + rmix:",len(group1_mod)," + ",len(group2_mod))
+    print(len(group1_mod)+len(group2_mod))
+else:
+    print("After: ",len(group1_mod))
