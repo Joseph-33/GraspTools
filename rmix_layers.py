@@ -11,10 +11,10 @@ rmix_fil = "rcsfmix.out"
 output = "rcsflastlay.out"
 
 str4f = "  5f-( 6)  5f ( 8)"
-orblays = ["11s","11p","10d","8f","8g","7g"]
-parity = "+"
+orblays = ["12s","12p","12d","12f","12g","7h","8h"]
+parity = "-"
 # Questions
-ansch = int(input("Choose an option: \n(1) orblays\n(2) remove full 4f\n(3) Some combination of both\n(4) Number (3) but 1/2{} comes from rcsfint\n".format(parity)))
+ansch = int(input("Choose an option: \n(1) orblays\n(2) remove full 4f\n(3) Some combination of both\n(4) Number (3) but 1/2{} comes from rcsfint\n(5) Number (1) but with 1/2{} comes from rcsfint\n".format(parity,parity)))
 if ansch == 1:
     print("Using:"," ".join(orblays))
 elif ansch == 2:
@@ -23,8 +23,10 @@ elif ansch == 3:
     print("Using: {} and {}".format(str4f, orblays))
 elif ansch == 4:
     print("Using: {} and {} 1/2{} version".format(str4f, orblays, parity))
+elif ansch == 5:
+    print("Using: {} 1/2{} version".format(orblays, parity))
 else:
-    print("Choose either 1, 2, 3 or 4")
+    print("Choose either 1, 2, 3, 4 or 5")
     exit()
 
 print("Parity: {}".format(parity))
@@ -94,7 +96,17 @@ def option4(group1, group2):
         if trth1 or trth2:
             group1_mod.append(csf)
     group2_mod = [csf2 for csf2 in group2 if "1/2{}".format(parity) not in csf2[-1]]
-
+    return group1_mod, group2_mod
+def option5(group1, group2):
+    """ Removes csf if does not contain orbital in orblays, but keeps all 1/2 csfs
+    Also remove all 1/- csfs from the rmix file to avoid duplicates"""
+    group1_mod = [] # First loop is orblays
+    for csf in group1: # Here is the things for 4f full
+        trth1 = "1/2{}".format(parity) in csf[-1]
+        trth2 = any(orb in csf[0] for orb in orblays)
+        if trth1 or trth2:
+            group1_mod.append(csf)
+    group2_mod = [csf2 for csf2 in group2 if "1/2{}".format(parity) not in csf2[-1]]
     return group1_mod, group2_mod
 
 # Open the files and read them
@@ -118,6 +130,8 @@ elif ansch == 3:
     group1_mod, group2_mod = option3(group1, group2)
 elif ansch == 4:
     group1_mod, group2_mod = option4(group1, group2)
+elif ansch == 5:
+    group1_mod, group2_mod = option5(group1, group2)
 
 group1_modstr = modstr(group1_mod)
 group2_modstr = modstr(group2_mod)
@@ -125,9 +139,9 @@ group2_modstr = modstr(group2_mod)
 # Writing
 with open(output,'w') as fil2:
     fil2.write("".join(lines[:5])) # Write the rcsf header
-    fil2.write(group1_modstr)
     if rmix_q:
         fil2.write(group2_modstr)
+        fil2.write(group1_modstr)
     else:
         fil2.write(group1_modstr)
 
