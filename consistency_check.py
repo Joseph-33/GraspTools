@@ -5,7 +5,7 @@ import re
 import pandas as pd
 from collections import defaultdict
 bp = breakpoint
-sumnm = ["oddvsml_sci_layer9.sum", "oddvsml_sci_noglayer7.sum"]
+sumnm = ["oddvsml_sci_layer8.sum"]
 
 
 def fsumlog(sumnm):
@@ -96,7 +96,7 @@ def sumlogmatch(sumnm, allvs, key):
     notvs = set(sumd) - set(onevs)
     if notvs:
         print("Values not in onevs, skipping: {}".format(np.sort(list(notvs))))
-    input("\n")
+    input("Press enter to continue\n")
     for orb in ( onevs.keys() ):
 
         if orb in notsum or orb in notvs:
