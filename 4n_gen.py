@@ -3,10 +3,10 @@ import pdb
 import re
 bp = breakpoint
 
-file_name = "rcsf.inp"
-out_name = "rcsf.out"
+file_name = "rcsfmr_99_evvsml.inp"
+out_name = "rcsfmr_99_4d4f_evvsml.inp"
 
-replace_csf = r"  5d-( 4)  5d ( 6)  5f-( 6)  5f ( 8)"
+replace_csf = r"  4d-( 4)  4d ( 6)  4f-( 6)  4f ( 8)"
 
 print("Welcome to the core subshell generator.\nThis program will add full core subshells to your csf file.")
 print("The current csf to be added are '{}'".format(replace_csf))
@@ -14,6 +14,7 @@ filans = input("The input and output files are:\nInput: {}\nOutput: {}\nWould yo
 if filans.lower() == 'y':
     file_name = input("Type input name: \n")
     out_name = input("Type output name: \n")
+print("Method 1 is using regex with {} and method 2 uses simple replace method, considered to be more reliable")
 ans = input("Would you like option 1 or option 2?: \n")
 
 if not ans.isdigit():
@@ -31,7 +32,7 @@ else:
 
 
 
-pattern_csf = r"^(\s\s6s\s\()"
+pattern_csf = r"^(\s\s5s\s\()"
 pattern_ang = r"^(\s\s\s)"
 replace_ang = " " * len(replace_csf)
 patterns = [pattern_csf, replace_csf, pattern_ang, replace_ang]
