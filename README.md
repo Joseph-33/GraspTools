@@ -1,5 +1,6 @@
 # GraspTools
 A collection of tools that can provide assistance for the program GRASP.
+If you use these tools significantly, please cite it as seen in the sidebar.
 
 ## Node counter and python plotter (nodecounter.py/ waveanalysis.py)
 
