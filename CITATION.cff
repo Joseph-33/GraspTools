@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Andrews"
+  given-names: "Joseph Stefan"
+  orcid: "https://orcid.org/0009-0005-4535-8342"
+title: "GraspTools"
+version: 0.7.0
+date-released: 2023-11-12
+url: "https://github.com/Joseph-33/GraspTools"
