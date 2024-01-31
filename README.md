@@ -6,6 +6,10 @@ If you use these tools significantly, please cite it as seen in the sidebar.
 
 May count the total number of nodes of any octave output file in the current directory. Also supports plotting and manually specifying orbitals to plot and count using wildcards.
 
+## Duplicate CSF remover
+
+This tool will remove all duplicate CSFs in rcsf.inp while preservering the previous order of the CSFs. Run rcsfblock afterwards to rebuild the blocks
+
 ## Electronic configurations from rcsf.out (conf_from_rcsf.py)
 
 Prints and outputs a list of configuration files from an rcsf.out file.
