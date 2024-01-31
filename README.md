@@ -1,5 +1,5 @@
-# GraspTools
-A collection of tools that can provide assistance for the program GRASP, please cite if used.
+# MCDHFTools
+A collection of tools that can provide assistance for the program GRASP and other MCDHF-based programs, please cite if used.
 
 ## Node counter and python plotter (nodecounter.py/ waveanalysis.py)
 
