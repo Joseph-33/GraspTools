@@ -1,6 +1,10 @@
 import sys
 
 filename = sys.argv[1]
+if len(sys.argv) == 3:
+    selecter = sys.argv[2]
+else:
+    selecter = ""
 
 def allcsfsgen():
     with open("rcsf.inp",'r') as csffil:
@@ -33,6 +37,15 @@ blockspl = blocks.split("\n")
 
 blockmerge = [ list(x) for x in zip(blockspl[0::2], blockspl[1::2]) ]
 
+if selecter:
+    select_parted = selecter.strip().split()
+    if len(select_parted) > 1:
+        J_sel = select_parted[0]
+        P_sel = select_parted[1]
+    else:
+        J_sel = select_parted
+        P_sel = ""
+
 for massive in blockmerge:
     items = massive[0].split()
     block = int(items[0]) - 1
@@ -44,7 +57,13 @@ for massive in blockmerge:
     csfnumbs = massive[1].split()
     csfnumbs = [ int(i) for i in csfnumbs]
 
-    print("\n",J,level, csfnumbs)
+    if selecter:
+        if J != J_sel:
+            continue
+        if P_sel:
+            if parity != P_sel:
+                continue
+    print("\n",J,parity,level, csfnumbs)
 
     for csfnumb in range(len(csfnumbs[:3])):
         csf = allcsfs[block][csfnumbs[csfnumb]-1]
