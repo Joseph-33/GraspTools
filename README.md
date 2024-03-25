@@ -12,7 +12,8 @@ Start the analysis with
 python -i waveanalysis.py
 mywave = Wave()
 mywave.from_file()
-``` and use `help(mywave)` to learn more about the functions. 
+```
+and use `help(mywave)` to learn more about the functions. 
 
 ## Duplicate CSF remover (duplicate_remover.py)
 
