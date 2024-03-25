@@ -21,7 +21,7 @@ This tool will remove all duplicate CSFs in rcsf.inp while preservering the prev
 
 ## Electronic configurations from rcsf.out (conf_from_rcsf.py)
 
-Prints and outputs a list of configuration files from an rcsf.out file.
+Prints and outputs a list of configuration from an rcsf.out file.
 Each configuration list is sorted to ensure the same order of configurations will appear for slightly different CSF files for easy comparison.
 
 ## Rmix layers
