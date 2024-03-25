@@ -9,7 +9,7 @@ Multiple .xmgrace files can be combined into one Wave() object due to the object
 
 Run the program with ```python -i waveanalysis.py``` & ```mywave = Wave()``` and use `help(mywave)` to learn more about the functions. 
 
-## Duplicate CSF remover
+## Duplicate CSF remover (duplicate_remover.py)
 
 This tool will remove all duplicate CSFs in rcsf.inp while preservering the previous order of the CSFs much faster than rcsfblock. Run rcsfblock afterwards to rebuild the blocks
 
