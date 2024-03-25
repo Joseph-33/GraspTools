@@ -1,9 +1,11 @@
 # MCDFTools
 A collection of tools that can provide assistance for the program GRASP and other MCDHF-based programs, please cite if used.
 
-## Node counter and python plotter (nodecounter.py/ waveanalysis.py)
+## Node counter and python plotter (waveanalysis.py)
 
-May count the total number of nodes of any octave output file in the current directory. Also supports plotting and manually specifying orbitals to plot and count using wildcards.
+A python code which reads the .xmgrace files outputted by grasp. Can be used to count the number of nodes in each orbital, which a sensitivity much higher than standard GRASP. Crucial for the heavy and super-heavy elements.
+
+Multiple .xmgrace files can be combined into one Wave() object due to the object-oriented programming nature of the program to plot and compare two different calculations easily.
 
 ## Duplicate CSF remover
 
