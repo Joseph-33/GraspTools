@@ -7,7 +7,7 @@ A python code which reads the .xmgrace files outputted by grasp. Can be used to 
 
 Multiple .xmgrace files can be combined into one Wave() object due to the object-oriented programming nature of the program to plot and compare two different calculations easily.
 
-Run the program with `python -i waveanalysis.py` & `mywave = Wave()`. `Use help(mywave)` to learn more about applicable functions. 
+Run the program with ```python -i waveanalysis.py & mywave = Wave()```. `Use help(mywave)` to learn more about applicable functions. 
 
 ## Duplicate CSF remover
 
