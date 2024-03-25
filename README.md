@@ -13,9 +13,7 @@ python -i waveanalysis.py
 mywave = Wave()
 mywave.from_file()
 ```
-and use `help(mywave)` to learn more about the functions. 
-
-Due to the modular nature of the program, more functions can easily be added.
+and use `help(mywave)` to learn more about the functions. Due to the modular nature of the program, more functions can easily be added.
 
 ## Duplicate CSF remover (duplicate_remover.py)
 
