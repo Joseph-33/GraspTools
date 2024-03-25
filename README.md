@@ -6,7 +6,7 @@ A collection of tools that can provide assistance for the program GRASP and othe
 A python code which reads the .xmgrace files outputted by grasp. Can be used to count the number of nodes in each orbital, which a sensitivity much higher than standard GRASP. Crucial for the heavy and super-heavy elements.
 
 Multiple .xmgrace files can be combined into one Wave() object due to the object-oriented programming nature of the program to plot and compare two different calculations easily.
-Run the program with `python -i waveanalysis.py` & `mywave = Wave()`. Use help(mywave) to learn more about applicable functions. 
+Run the program with `python -i waveanalysis.py` & `mywave = Wave()`. `Use help(mywave)` to learn more about applicable functions. 
 
 ## Duplicate CSF remover
 
