@@ -15,6 +15,8 @@ mywave.from_file()
 ```
 and use `help(mywave)` to learn more about the functions. 
 
+Due to the modular nature of the program, more functions can easily be added.
+
 ## Duplicate CSF remover (duplicate_remover.py)
 
 This tool will remove all duplicate CSFs in rcsf.inp while preservering the previous order of the CSFs much faster than rcsfblock. Run rcsfblock afterwards to rebuild the blocks
