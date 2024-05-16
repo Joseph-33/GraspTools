@@ -6,7 +6,7 @@ else
 fi
 
 echo "Using: "$val
-rcsfpreview < inputs/$val > conf_preview_tmp 2>&1
+rcsfpreview < $val > conf_preview_tmp 2>&1
 
-python my_conf_collector.py conf_preview_tmp inputs/$val
+python my_conf_collector.py conf_preview_tmp $val
 rm conf_preview_tmp
