@@ -1,12 +1,9 @@
 import numpy as np
-import sys
 import pdb
 bp = breakpoint
 
 filename2 = "rcsf.inp"
 filename3 = "rcsfmr_4n_z39rdl2_l2.inp"
-filename2 = sys.argv[1]
-filename3 = sys.argv[2]
 
 print("#"*41)
 print("##### RCSFZEROFIRST Python Edition ######")
