@@ -8,7 +8,16 @@ filename3 = "rcsfmr_4n_z39rdl2_l2.inp"
 filename2 = sys.argv[1]
 filename3 = sys.argv[2]
 
+print("#"*41)
+print("##### RCSFZEROFIRST Python Edition ######")
+print("#"*41)
+print("Welcome to zerofirst, but faster by factors of 480!")
+print("Input:\n\t Zerospace\n\t List to Partition\nOutput:\n\t rcsf.out\n")
+filename3 = input("Please give the zero order space:\n")
+filename2 = input("Please give the list you want to partition\n")
+
 def blocklessreader(filename):
+    print("Reading: ", filename)
     with open(filename,'r') as csffil:
         rawlines = csffil.readlines()
     lines = rawlines[5:]
@@ -44,14 +53,15 @@ string_array = np.empty(lendiff, dtype='<U1024')
 final = []
 
 j=0
+thresholds = {i: (i * lenbig) // 10 for i in range(1, 11)}
 for i in range(len(allcsfs2)):
-    if i%100000 == 0:
+    if i in thresholds.values():
         print(i, "{:.4f}".format(i/lenbig * 100))
     if allcsfs2[i] in setmr:
         continue
     string_array[j] = allcsfs2[i]
     j += 1
-with open("test.out",'w') as fil:
+with open("rcsf.out",'w') as fil:
     fil.write("".join(initlines))
     fil.write("".join(allcsfs3))
     fil.write("".join(string_array.tolist()))
