@@ -40,14 +40,17 @@ def blocklessreader(filename):
 #         block = blockspl[i].split("\n")
 #         block = [ "\n".join(block[j:j+3]) for j in range(0,len(block),3) if block[j].strip()]
 #     return block
-allcsfs2, initlines = blocklessreader(filename2)
-allcsfs3, initlines = blocklessreader(filename3)
+allcsfs2, initlines2 = blocklessreader(filename2)
+allcsfs3, initlines3 = blocklessreader(filename3)
 setmr = set(allcsfs3)
 lenbig = len(allcsfs2)
 lensmall = len(allcsfs3)
 lendiff = lenbig - lensmall
 string_array = np.empty(lendiff, dtype='<U1024')
 final = []
+
+print("Zerospace: ", lensmall)
+print("Partition list", lenbig)
 
 j=0
 thresholds = {i: (i * lenbig) // 10 for i in range(1, 11)}
@@ -59,7 +62,7 @@ for i in range(len(allcsfs2)):
     string_array[j] = allcsfs2[i]
     j += 1
 with open("rcsf.out",'w') as fil:
-    fil.write("".join(initlines))
+    fil.write("".join(initlines2))
     fil.write("".join(allcsfs3))
     fil.write("".join(string_array.tolist()))
 
