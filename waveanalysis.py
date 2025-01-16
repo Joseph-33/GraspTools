@@ -1,3 +1,24 @@
+print("""
+##################################################
+#  Welcome to Wave Analysis!                     #
+#                                                #
+#  This script allows users to study their       #
+#  MCDHF wavefunctions, and compare two          #
+#  wavefunctions with each other.                #
+#                                                #
+#  Firstly, run rwfnplot to generate .agr file.  #
+#                                                #
+#  Run in interactive mode with python -i        #
+#                                                #
+#  Then run:                                     #
+#  my_wave = Wave()                              #
+#  my_wave.from_file()                           #
+#                                                #
+#  From here, run other functions as needed      #
+#                                                #
+##################################################
+""")
+
 import re
 import numpy as np
 from collections import defaultdict
@@ -259,6 +280,9 @@ class Wave:
 
 
     def from_file(self):
+        """
+        Loads .agr file from cwd
+        """
         self.filename, self.filter_list = get_filename()
         self.datasets = file_to_dataset(self.filename)
         self.datasets, self.orbitals = datasets_to_numpy(self.datasets)

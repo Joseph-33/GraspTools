@@ -1,6 +1,14 @@
 # MCDFTools
 A collection of tools that can provide assistance for the program GRASP and other MCDHF-based programs, please cite if used.
 
+## Getting Started
+
+Simply run 
+```
+git clone https://github.com/Joseph-33/GraspTools
+```
+on your command line, or download as a zip.
+
 ## Node counter and python plotter (waveanalysis.py)
 
 A python code which reads the .xmgrace files outputted by grasp. Can be used to count the number of nodes in each orbital, which a sensitivity much higher than standard GRASP. Crucial for the heavy and super-heavy elements.
@@ -38,4 +46,6 @@ Creates a clist.ref file using the ordering of the rcsfmr.inp multireference fil
 ## Configuration CSF counter (conf_collector.sh)
 
 Uses the rcsfpreview program developed in https://github.com/Joseph-33/Grasp that will estimate the number of CSFs by generating CSFs but not combining or saving them to file. Useful for rough estimates of extremely large expansions.
+
+## 4
 

@@ -1,3 +1,24 @@
+#########################################
+#  Consistency Check                    #
+#                                       #
+#  Program written to verify the orbital#
+#  radii saved are the same as in my log#
+#  format.                              #
+#                                       #
+#                                       #
+#  INPUTS:                              #
+#        .sum file                      #
+#        logs in ./logs folder          #
+#                                       #
+#  OUTPUTS:                             #
+#         Confirmation of consistenty   #
+#                                       #
+#                                       #
+#########################################
+
+
+
+
 import numpy as np
 import os
 import pdb

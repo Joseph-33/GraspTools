@@ -1,3 +1,18 @@
+print("""
+#########################################
+#  Welcome to configuration collector!  #
+#                                       #
+#  This is a script that will automate  #
+#  the custom program rscfpreview       #
+#  Useful for checking how many CSFs    #
+#  a calculation will need with 100x    #
+#  speed improvement for large sets.    #
+#                                       #
+#########################################
+""")
+
+
+
 if ! [ -z "$1" ]
 then
 	val=$1

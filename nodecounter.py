@@ -1,3 +1,15 @@
+#########################################################
+#                                                       #
+#  WARNING: DEPRECATED!                                 #
+#                                                       #
+#  DEPRECATED! Functions moved to waveanalysis.py       #
+#                                                       #
+#  Welcome to node Counter!                             #
+#                                                       #
+#########################################################
+
+
+
 import re
 import numpy as np
 from scipy.signal import savgol_filter

@@ -4,9 +4,37 @@ import os.path
 import re
 import pdb
 
+print("""
+########################################
+#  Welcome to Duplicate CSF remover!   #
+#                                      #
+#  Removes CSFs that are duplicate     #
+#  Very useful for custom made         #
+#  or combined CSF lists               #
+#                                      #
+#  Orders of magnitude faster than     #
+#  Standard GRASP version              #
+#                                      #
+#  INPUTS:                             #
+#         Input CSF list               #
+#                                      #
+#  OUTPUTS:                            #
+#         List without duplicates      #
+#                                      #
+#                                      #
+########################################
+""")
+
+
 infile = "rcsf.inp"
 outfile = "rcsf.out"
+
 print("Warning: This removes the block markers, run rcsfblock afterwards")
+
+filans = input("The input and output files are:\nInput: {}\nOutput: {}\nWould you like to change them? (y/n)\n".format(file_name,out_name))
+if filans.lower() == 'y':
+    file_name = input("Type input name: \n")
+    out_name = input("Type output name: \n")
 
 def star_remover(csf,starindex=False):
     nl = []

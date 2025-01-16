@@ -1,17 +1,17 @@
-##########################################################
-#  This is the Principle Quantum Number n=4 Generator    #
-#                                                        #
-#  This code will add core subshells to a rcsf.inp file  #
-#                                                        #
-#  Input:                                                #
-#           Input CSF File Name                          #
-#                                                        #
-#  Output:                                               #
-#           Output CSF File Name                         #
-#                                                        #
-##########################################################
-
-
+print("""
+###########################################################
+#  Welcome to the Principle Quantum Number n=4 Generator! #
+#                                                         #
+#  This code will add core subshells to a rcsf.inp file   #
+#                                                         #
+#  Input:                                                 #
+#           Input CSF File Name                           #
+#                                                         #
+#  Output:                                                #
+#           Output CSF File Name                          #
+#                                                         #
+###########################################################
+""")
 
 
 from os import listdir
