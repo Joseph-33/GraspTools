@@ -1,5 +1,5 @@
 # MCDFTools
-A collection of tools that can provide assistance for the program GRASP and other MCDHF-based programs, please cite if used.
+A collection of tools that can provide assistance for the program GRASP2018 (https://doi.org/10.1016/j.cpc.2018.10.032) and other MCDHF-based programs, please cite if used.
 
 ## Getting Started
 
@@ -8,6 +8,10 @@ Simply run
 git clone https://github.com/Joseph-33/GraspTools
 ```
 on your command line, or download as a zip.
+
+# Requirements
+ - Python
+ - Bash (Unix Shell)
 
 ## Node counter and python plotter (waveanalysis.py)
 
