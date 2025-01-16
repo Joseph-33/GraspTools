@@ -1,3 +1,19 @@
+##########################################################
+#  This is the Principle Quantum Number n=4 Generator    #
+#                                                        #
+#  This code will add core subshells to a rcsf.inp file  #
+#                                                        #
+#  Input:                                                #
+#           Input CSF File Name                          #
+#                                                        #
+#  Output:                                               #
+#           Output CSF File Name                         #
+#                                                        #
+##########################################################
+
+
+
+
 from os import listdir
 import pdb
 import re
@@ -6,7 +22,7 @@ bp = breakpoint
 file_name = "rcsfmr_99_evvsml.inp"
 out_name = "rcsfmr_99_4d4f_evvsml.inp"
 
-replace_csf = r"  4d-( 4)  4d ( 6)  4f-( 6)  4f ( 8)"
+replace_csf = r"  4d-( 4)  4d ( 6)  4f-( 6)  4f ( 8)" # List of the core subshells to include
 
 print("Welcome to the core subshell generator.\nThis program will add full core subshells to your csf file.")
 print("The current csf to be added are '{}'".format(replace_csf))
@@ -38,6 +54,7 @@ replace_ang = " " * len(replace_csf)
 patterns = [pattern_csf, replace_csf, pattern_ang, replace_ang]
 
 def file_selector():
+    """ REDUNDANT. The file selector function. """
     file_names = [i for i in listdir()]
     file_names = [i for i in file_names if i[0] != "."]
     if len(file_names) == 1:
@@ -52,6 +69,8 @@ def file_selector():
 
 
 def option1(lines, patterns):
+    """ Option1:
+                This function uses regex to add the core subshells to the basis set"""
     pattern_csf, replace_csf, pattern_ang, replace_ang = patterns
     result = []
     for i in range(len(lines)):
@@ -65,6 +84,8 @@ def option1(lines, patterns):
     return result
 
 def option2(lines, patterns):
+    """ Option2:
+            This function uses str.replace to add the core subshells to the basis set"""
     pattern_csf, replace_csf, pattern_ang, replace_ang = patterns
     result=[]
     for i in range(len(lines)):
