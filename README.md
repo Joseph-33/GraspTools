@@ -51,5 +51,17 @@ Creates a clist.ref file using the ordering of the rcsfmr.inp multireference fil
 
 Uses the rcsfpreview program developed in https://github.com/Joseph-33/Grasp that will estimate the number of CSFs by generating CSFs but not combining or saving them to file. Useful for rough estimates of extremely large expansions.
 
-## 4
+## Principle Quantum Number n=4 Generator (4n_gen.py)
+
+This code will add core subshells to a rcsf.inp file
+
+## RMCDHF Level Finder (level_finder.py)
+
+This code will link the rmcdhf CSF number in the log output to an elcetronic configuration in your rcsf.inp file.
+
+## RCSF Zero First Order (zero_first.py)
+
+This program is a replacement of the program rcsfzerofirst included in the GRASP suite of tools. Details on the program and background theory can be found here: https://doi.org/10.3390/atoms11040068.
+This code was written to address speed issues, resulting in a speed increase over 480 for large CSFs lists.
+
 
