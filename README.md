@@ -10,8 +10,8 @@ git clone https://github.com/Joseph-33/GraspTools
 on your command line, or download as a zip.
 
 # Requirements
- - Python
- - Bash (Unix Shell)
+ - Python (For Python scripts)
+ - Bash, Unix Shell (For Bash scripts) 
 
 ## Node counter and python plotter (waveanalysis.py)
 
