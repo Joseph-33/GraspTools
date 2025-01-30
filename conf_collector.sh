@@ -1,4 +1,3 @@
-print("""
 #########################################
 #  Welcome to configuration collector!  #
 #                                       #
@@ -9,8 +8,6 @@ print("""
 #  speed improvement for large sets.    #
 #                                       #
 #########################################
-""")
-
 
 
 if ! [ -z "$1" ]
