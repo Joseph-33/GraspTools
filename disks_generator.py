@@ -1,4 +1,5 @@
 import sys
+import os
 
 def main():
     if len(sys.argv) != 3:
@@ -11,6 +12,10 @@ def main():
         sys.exit(1)
     directory = sys.argv[2]
     with open("disks", "w") as f:
+
+        cwd = os.getcwd()
+        f.write(cwd + "\n")
+
         for _ in range(n):
             f.write(directory + "\n")
     print(f"Written '{directory}' {n} times to disks")
