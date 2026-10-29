@@ -14,10 +14,10 @@ def main():
     with open("disks", "w") as f:
 
         cwd = os.getcwd()
-        f.write(cwd + "\n")
+        f.write("'" + cwd + "'" + "\n")
 
         for _ in range(n):
-            f.write(directory + "\n")
+            f.write("'" + directory + "'" + "\n")
     print(f"Written '{directory}' {n} times to disks")
 
 if __name__ == "__main__":
